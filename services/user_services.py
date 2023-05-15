@@ -10,5 +10,5 @@ class UserService:
         _user_in = User(
             email=_user.email,
            username= _user.username,
-           hashed_password= _user.password
+           hashed_password= hash_password(_user.password)
         )
