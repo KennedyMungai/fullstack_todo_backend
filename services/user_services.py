@@ -1,4 +1,6 @@
 """The file to hold the logic handling the services for the User"""
+from typing import Optional
+from pydantic import EmailStr
 from schemas.user_schema import UserAuth
 from models.user_model import User
 from core.security import hash_password
@@ -22,3 +24,7 @@ class UserService:
         await _user_in.save()
 
         return _user_in
+    
+    @staticmethod
+    async def authenticate(_email:EmailStr, _password: str) -> Optional[User]:
+        pass
