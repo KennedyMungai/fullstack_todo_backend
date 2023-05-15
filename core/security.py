@@ -1,10 +1,11 @@
 """The file to hold the security logic for the app"""
 from datetime import datetime, timedelta
 from typing import Any, Union
-from passlib.context import CryptContext
-from core.config import settings
-from jose import jwt
 
+from jose import jwt
+from passlib.context import CryptContext
+
+from core.config import settings
 
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
