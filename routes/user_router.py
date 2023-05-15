@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, status
 from pymongo.errors import DuplicateKeyError
 
-from schemas.user_schema import UserAuth
+from schemas.user_schema import UserAuth, UserOut
 from services.user_services import UserService
 
 user_router = APIRouter(prefix="/user", tags=["User"])
@@ -15,7 +15,7 @@ user_router = APIRouter(prefix="/user", tags=["User"])
     status_code=status.HTTP_201_CREATED,
     response_model=UserAuth
 )
-async def create_user(_data: UserAuth):
+async def create_user(_data: UserOut):
     """The endpoint for creating users
 
     Args:
