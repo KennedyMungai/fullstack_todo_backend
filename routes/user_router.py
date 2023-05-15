@@ -10,5 +10,5 @@ user_router = APIRouter(prefix="/user", tags=["User"])
 
 
 @user_router.post("/create", name="Create User", description="An endpoint for creating new users for the app")
-async def create_user(data: UserAuth):
-    pass
+async def create_user(_data: UserAuth):
+    await UserService.create_user(_data)
