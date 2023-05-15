@@ -1,6 +1,7 @@
 """The User Models"""
 from typing import Optional
 from uuid import UUID, uuid4
+
 from beanie import Document, Indexed
 from pydantic import EmailStr, Field
 
