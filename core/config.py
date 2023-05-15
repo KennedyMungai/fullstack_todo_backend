@@ -12,6 +12,7 @@ JWT_SECRET_KEY_ENV = os.environ.get("JWT_SECRET_KEY")
 JWT_REFRESH_SECRET_KEY_ENV = os.environ.get("JWT_REFRESH_SECRET_KEY")
 MONGODB_URL_ENV = os.environ.get("MONGODB_URL")
 
+
 class Settings(BaseSettings):
     """The settings for the application
 
@@ -24,13 +25,13 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRATION_MINUTES: int = 15
     REFRESH_ACCESS_TOKEN_EXPIRATION_MINUTES: int = 60*24*7   # 7 days
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
-    
+
     # Database
     MONGODB_CONN_STRING = MONGODB_URL_ENV
-    
-    class Config: 
+
+    class Config:
         """The configuration for the settings class"""
         case_sensitive = True
-        
+
 
 settings = Settings()
