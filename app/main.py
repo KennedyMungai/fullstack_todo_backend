@@ -4,6 +4,8 @@ from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 from core.config import settings
 from models.user_model import User
+from routes.user_router import user_router
+
 
 
 app = FastAPI(
@@ -25,3 +27,5 @@ async def startup_event():
 async def root() -> dict[str, str]:
     """The root endpoint"""
     return {"message": "The API works"}
+
+app.include_router(user_router)
