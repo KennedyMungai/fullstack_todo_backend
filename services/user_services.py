@@ -26,5 +26,10 @@ class UserService:
         return _user_in
     
     @staticmethod
-    async def authenticate(_email:EmailStr, _password: str) -> Optional[User]:
+    async def authenticate(_email:str, _password: str) -> Optional[User]:
         pass
+    
+    @staticmethod
+    async def get_user_by_email(_email: str) -> Optional[User]:
+        user = await User.find_one(User.email == _email)
+        return user
