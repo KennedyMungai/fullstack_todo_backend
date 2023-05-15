@@ -18,6 +18,11 @@ class UserAuth(BaseModel):
 
 
 class UserOut(BaseModel):
+    """The template for the data being output from the db
+
+    Args:
+        BaseModel (Pydantic): The parent class for the UserOut schema
+    """
     user_id: UUID
     username: str
     email:EmailStr
