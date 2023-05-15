@@ -20,4 +20,7 @@ async def create_user(_data: UserAuth):
     Args:
         _data (UserAuth): The data used to create the user
     """
-    await UserService.create_user(_data)
+    try:
+        await UserService.create_user(_data)
+    except DuplicateKeyError:
+        raise Exception("User already exists")
