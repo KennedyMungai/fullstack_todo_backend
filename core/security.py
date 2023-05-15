@@ -1,4 +1,5 @@
 """The file to hold the security logic for the app"""
+from typing import Any, Union
 from passlib.context import CryptContext
 
 
@@ -13,3 +14,6 @@ def hash_password(_password: str) -> str:
 def verify_password(_password: str, _hashed_password: str) -> bool:
     """Verify the password"""
     return password_context.verify(_password, _hashed_password)
+
+def create_access_token(_subject: Union[str, Any]):
+    pass
