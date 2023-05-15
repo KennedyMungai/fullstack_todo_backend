@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import EmailStr
 from schemas.user_schema import UserAuth
 from models.user_model import User
-from core.security import hash_password
+from core.security import hash_password, verify_password
 
 
 class UserService:
@@ -27,7 +27,15 @@ class UserService:
     
     @staticmethod
     async def authenticate(_email:str, _password: str) -> Optional[User]:
-        pass
+        _user = await UserService.get_user_by_email(_email)
+
+        if not _user:
+            return None
+        
+        if not verify_password(_password, _user.hashed_password):
+            return None
+        
+        return _user
     
     @staticmethod
     async def get_user_by_email(_email: str) -> Optional[User]:
