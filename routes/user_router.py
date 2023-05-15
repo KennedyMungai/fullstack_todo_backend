@@ -1,5 +1,5 @@
 """The router file for the user"""
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, HTTPException
 
 from schemas.user_schema import UserAuth
 from services.user_services import UserService
@@ -23,4 +23,7 @@ async def create_user(_data: UserAuth):
     try:
         await UserService.create_user(_data)
     except DuplicateKeyError:
-        raise Exception("User already exists")
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, 
+            detail="User already exists"
+            )
