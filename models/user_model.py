@@ -19,7 +19,7 @@ class User(Document):
     first_name: Optional[str]
     last_name: Optional[str]
     disabled: Optional[bool]
-    
+
     class Settings:
         """The name of the collection"""
         name = "users"
