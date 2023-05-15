@@ -1,8 +1,9 @@
 """The configuration file for the app"""
-from typing import List
-from pydantic import AnyHttpUrl, BaseSettings
 import os
-from dotenv import load_dotenv, find_dotenv
+from typing import List
+
+from dotenv import find_dotenv, load_dotenv
+from pydantic import AnyHttpUrl, BaseSettings
 
 load_dotenv(find_dotenv())
 
