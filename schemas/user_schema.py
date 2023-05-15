@@ -28,4 +28,4 @@ class UserOut(BaseModel):
     email:EmailStr
     first_name: Optional[str]
     last_name: Optional[str]
-    disabled: bool = False
+    disabled: Optional[bool] 

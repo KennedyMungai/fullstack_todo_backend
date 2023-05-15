@@ -13,7 +13,7 @@ class User(Document):
         Document (beanie.Document): The parent for the User model
     """
     user_id: UUID = Field(default_factory=uuid4)
-    user_name: Indexed(str, unique=True)
+    username: Indexed(str, unique=True)
     email: Indexed(EmailStr, unique=True)
     hashed_password: str
     first_name: Optional[str]

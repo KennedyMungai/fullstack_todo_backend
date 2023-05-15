@@ -12,7 +12,8 @@ user_router = APIRouter(prefix="/user", tags=["User"])
     "/create",
     name="Create User",
     description="An endpoint for creating new users for the app",
-    status_code=status.HTTP_201_CREATED
+    status_code=status.HTTP_201_CREATED,
+    response_model=UserOut
 )
 async def create_user(_data: UserAuth):
     """The endpoint for creating users
