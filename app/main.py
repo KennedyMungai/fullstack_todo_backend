@@ -10,4 +10,5 @@ app = FastAPI(
 
 @app.get("/", name="root", description="The root endpoint", tags=["Root"])
 async def root() -> dict[str, str]:
+    """The root endpoint"""
     return {"message": "The API works"}
