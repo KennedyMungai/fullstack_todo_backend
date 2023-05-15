@@ -27,7 +27,7 @@ class UserService:
     
     @staticmethod
     async def authenticate(_email:str, _password: str) -> Optional[User]:
-        """The function to authenticate isers
+        """The function to authenticate users
 
         Args:
             _email (str): The email of the user to be authenticated
