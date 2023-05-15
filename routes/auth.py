@@ -19,3 +19,6 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
             status_code=status.HTTP_400_BAD_REQUEST, 
             detail="Incorrect email or password"
             )
+    
+    # Create access and refresh tokens
+    return
