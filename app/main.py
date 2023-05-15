@@ -1,12 +1,11 @@
 """The main file for the project"""
-from fastapi import FastAPI
 from beanie import init_beanie
+from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
+
 from core.config import settings
 from models.user_model import User
 from routes.user_router import user_router
-
-
 
 app = FastAPI(
     title="Todo Backend",
