@@ -14,7 +14,8 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     """The login endpoint
 
     Args:
-        _form_data (OAuth2PasswordRequestForm, optional): The data a user uses to login. Defaults to Depends().
+        _form_data (OAuth2PasswordRequestForm, optional): 
+                    The data a user uses to login. Defaults to Depends().
 
     Raises:
         HTTPException: A 400 is raised if a user enters bad credentials
