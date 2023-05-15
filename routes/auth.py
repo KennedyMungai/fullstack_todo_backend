@@ -23,12 +23,12 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
         Any: ANy data type cab be returned
     """
     _user = await UserService.authenticate(_form_data.email, _form_data.password)
-    
+
     if not _user:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, 
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect email or password"
-            )
-    
+        )
+
     # Create access and refresh tokens
     return

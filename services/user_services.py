@@ -24,9 +24,9 @@ class UserService:
         await _user_in.save()
 
         return _user_in
-    
+
     @staticmethod
-    async def authenticate(_email:str, _password: str) -> Optional[User]:
+    async def authenticate(_email: str, _password: str) -> Optional[User]:
         """The function to authenticate users
 
         Args:
@@ -40,12 +40,12 @@ class UserService:
 
         if not _user:
             return None
-        
+
         if not verify_password(_password, _user.hashed_password):
             return None
-        
+
         return _user
-    
+
     @staticmethod
     async def get_user_by_email(_email: str) -> Optional[User]:
         """The function to get a user by email
