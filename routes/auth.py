@@ -1,11 +1,10 @@
 """The file that holds the auth endpoints for the users"""
 from typing import Any
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 
 from services.user_services import UserService
-from fastapi import HTTPException
 
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
