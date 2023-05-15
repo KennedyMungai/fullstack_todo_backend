@@ -5,8 +5,14 @@ from core.security import hash_password
 
 
 class UserService:
+    """The User Services class"""
     @staticmethod
     async def create_user(_user: UserAuth):
+        """The static function that creates a user in the database`
+
+        Args:
+            _user (UserAuth): The schema used to create users
+        """
         _user_in = User(
             email=_user.email,
            username= _user.username,
