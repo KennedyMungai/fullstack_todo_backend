@@ -1,9 +1,9 @@
 """The file to hold the logic handling the services for the User"""
 from typing import Optional
-from pydantic import EmailStr
-from schemas.user_schema import UserAuth
-from models.user_model import User
+
 from core.security import hash_password, verify_password
+from models.user_model import User
+from schemas.user_schema import UserAuth
 
 
 class UserService:
