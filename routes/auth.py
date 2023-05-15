@@ -11,6 +11,17 @@ auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
 @auth_router.post("/login")
 async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
+    """The login endpoint
+
+    Args:
+        _form_data (OAuth2PasswordRequestForm, optional): The data a user uses to login. Defaults to Depends().
+
+    Raises:
+        HTTPException: A 400 is raised if a user enters bad credentials
+
+    Returns:
+        Any: ANy data type cab be returned
+    """
     _user = await UserService.authenticate(_form_data.email, _form_data.password)
     
     if not _user:
