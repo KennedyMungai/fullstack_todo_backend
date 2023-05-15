@@ -20,6 +20,15 @@ def verify_password(_password: str, _hashed_password: str) -> bool:
     return password_context.verify(_password, _hashed_password)
 
 def create_access_token(_subject: Union[str, Any], _expires_delta: int = None) -> str:
+    """Function to create access tokens
+
+    Args:
+        _subject (Union[str, Any]): The items to be encoded
+        _expires_delta (int, optional): The expiration time. Defaults to None.
+
+    Returns:
+        str: The access token
+    """
     if _expires_delta is not None:
         _expires_delta = datetime.utcnow() + _expires_delta
     else:
