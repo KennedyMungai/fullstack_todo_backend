@@ -1,5 +1,7 @@
 """The main file for the project"""
 from fastapi import FastAPI
+from beanie import init_beanie
+from motor.motor_asyncio import AsyncIOMotorClient
 
 
 app = FastAPI(
