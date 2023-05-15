@@ -48,5 +48,13 @@ class UserService:
     
     @staticmethod
     async def get_user_by_email(_email: str) -> Optional[User]:
+        """The function to get a user by email
+
+        Args:
+            _email (str): The email of the user to be retrieved
+
+        Returns:
+            Optional[User]: The retrieved user
+        """
         user = await User.find_one(User.email == _email)
         return user
