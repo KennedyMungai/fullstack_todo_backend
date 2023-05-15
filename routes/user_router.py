@@ -3,6 +3,7 @@ from fastapi import APIRouter, status
 
 from schemas.user_schema import UserAuth
 from services.user_services import UserService
+from pymongo.errors import DuplicateKeyError
 
 user_router = APIRouter(prefix="/user", tags=["User"])
 
