@@ -16,6 +16,6 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     
     if not _user:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
+            status_code=status.HTTP_400_BAD_REQUEST, 
             detail="Incorrect email or password"
             )
