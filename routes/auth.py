@@ -22,7 +22,7 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     Returns:
         Any: ANy data type cab be returned
     """
-    _user = await UserService.authenticate(_form_data.email, _form_data.password)
+    _user = await UserService.authenticate(_form_data.username, _form_data.password)
 
     if not _user:
         raise HTTPException(
