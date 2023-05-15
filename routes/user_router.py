@@ -24,6 +24,6 @@ async def create_user(_data: UserAuth):
         return await UserService.create_user(_data)
     except DuplicateKeyError:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, 
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="User already exists"
-            )
+        )
