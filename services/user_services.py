@@ -12,3 +12,5 @@ class UserService:
            username= _user.username,
            hashed_password= hash_password(_user.password)
         )
+        
+        await _user_in.save()
