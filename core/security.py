@@ -9,6 +9,7 @@ def hash_password(_password: str) -> str:
     """Hash the password"""
     return password_context.hash(_password)
 
+
 def verify_password(_password: str, _hashed_password: str) -> bool:
     """Verify the password"""
     return password_context.verify(_password, _hashed_password)

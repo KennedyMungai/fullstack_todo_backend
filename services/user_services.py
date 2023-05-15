@@ -15,10 +15,10 @@ class UserService:
         """
         _user_in = User(
             email=_user.email,
-           username= _user.username,
-           hashed_password= hash_password(_user.password)
+            username=_user.username,
+            hashed_password=hash_password(_user.password)
         )
-        
+
         await _user_in.save()
-        
+
         return _user_in
