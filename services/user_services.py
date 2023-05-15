@@ -20,3 +20,5 @@ class UserService:
         )
         
         await _user_in.save()
+        
+        return _user_in
