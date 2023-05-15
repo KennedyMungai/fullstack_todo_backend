@@ -15,5 +15,5 @@ def verify_password(_password: str, _hashed_password: str) -> bool:
     """Verify the password"""
     return password_context.verify(_password, _hashed_password)
 
-def create_access_token(_subject: Union[str, Any]):
+def create_access_token(_subject: Union[str, Any], expires_delta: int = None) -> str:
     pass
