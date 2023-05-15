@@ -7,5 +7,5 @@ auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 @auth_router.post("/login")
-async def login():
+async def login(_login: OAuth2PasswordRequestForm):
     pass
