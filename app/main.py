@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from core.config import settings
+from models.todo_model import Todo
 from models.user_model import User
 from routes.auth_route import auth_router
 from routes.todo_routes import todo_router
@@ -20,7 +21,7 @@ async def startup_event():
     """Logic to run at app startup"""
     print("Connecting to the database")
     db_client = AsyncIOMotorClient(settings.MONGODB_CONN_STRING).todolist
-    await init_beanie(db_client, document_models=[User])
+    await init_beanie(db_client, document_models=[User, Todo])
     print("Connected to the database")
 
 
