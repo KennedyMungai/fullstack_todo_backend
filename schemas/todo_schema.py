@@ -23,3 +23,4 @@ class TodoOut(BaseModel):
     title: str
     description: str
     created_at: datetime
+    updated_at: datetime
