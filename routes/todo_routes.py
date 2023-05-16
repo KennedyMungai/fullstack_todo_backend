@@ -1,5 +1,5 @@
 """The file tha holds the Todo endpoints"""
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
