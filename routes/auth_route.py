@@ -101,12 +101,12 @@ async def refresh_access_token(_refresh_token: str = Body(...)) -> TokenSchema:
                 detail='Token expired',
                 headers={'WWW-Authenticate': 'Bearer'}
             )
-    except (JWTError, ValidationError):
+    except (JWTError, ValidationError) as error:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail='Could not validate credentials',
             headers={'WWW-Authenticate': 'Bearer'}
-        )
+        ) from error
 
     _user = await UserService.get_user_by_id(token_data.sub)
 
