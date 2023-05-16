@@ -5,7 +5,10 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 
 from core.security import create_access_token, create_refresh_token
+from dependencies.user_dependencies import get_current_user
+from models.user_model import User
 from schemas.auth_schema import TokenSchema
+from schemas.user_schema import UserOut
 from services.user_services import UserService
 
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -43,3 +46,22 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
         "access_token": create_access_token(_user.user_id),
         "refresh_token": create_refresh_token(_user.user_id)
     }
+
+
+
+@auth_router.post(
+    "/test-token", 
+    name="Test Token", 
+    status_code=status.HTTP_200_OK, 
+    description="An endpoint to test if the access token is valid", response_model=UserOut
+    )
+async def test_token(_user: User = Depends(get_current_user)) -> Any:
+    """The test token endpoint
+
+    Args:
+        _user (User, optional): The user that is logged in. Defaults to Depends(get_current_user).
+
+    Returns:
+        Any: Any data type can be returned
+    """
+    return _user
