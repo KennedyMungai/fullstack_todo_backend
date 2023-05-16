@@ -1,5 +1,6 @@
 """The file which will contain auth schemas for the app"""
 from uuid import UUID
+
 from pydantic import BaseModel
 
 
