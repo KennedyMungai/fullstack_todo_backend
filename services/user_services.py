@@ -1,5 +1,6 @@
 """The file to hold the logic handling the services for the User"""
 from typing import Optional
+from uuid import UUID
 
 from core.security import hash_password, verify_password
 from models.user_model import User
@@ -58,3 +59,8 @@ class UserService:
         """
         user = await User.find_one(User.email == _email)
         return user
+
+    @staticmethod
+    async def get_user_by_id(_id: UUID) -> Optional[User]:
+       _user = await User.find_one(User.user_id == _id)
+       return _user
