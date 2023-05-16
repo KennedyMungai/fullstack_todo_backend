@@ -8,7 +8,6 @@ from models.user_model import User
 from schemas.todo_schema import TodoOut
 from services.todo_service import TodoService
 
-
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
 
 
