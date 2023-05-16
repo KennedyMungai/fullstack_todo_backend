@@ -40,4 +40,4 @@ async def get_all_todos(_current_user: User = Depends(get_current_user)):
     response_model=Todo
     )
 async def create_todo_endpoint(_todo: TodoCreate, _current_user: User = Depends(get_current_user)):
-    pass
+    return await TodoService.create_todo(_todo, _current_user)
