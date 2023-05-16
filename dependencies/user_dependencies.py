@@ -19,7 +19,8 @@ async def get_current_user(token: str = Depends(reusable_oauth)) -> User:
     """A  function to get details of the currently logged in user
 
     Args:
-        token (str, optional): The token created by the login endpoint. Defaults to Depends(reusable_oauth).
+        token (str, optional): 
+                    The token created by the login endpoint. Defaults to Depends(reusable_oauth).
 
     Raises:
         HTTPException: A 401 forbidden unauthorized is raised when the access token expired
