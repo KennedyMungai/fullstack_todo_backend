@@ -1,5 +1,6 @@
 """The file tha holds the Todo endpoints"""
 from typing import List
+from uuid import UUID
 
 from fastapi import APIRouter, Depends, status
 
@@ -45,5 +46,5 @@ async def create_todo_endpoint(_todo: TodoCreate, _current_user: User = Depends(
 
 
 @todo_router.get("/{_todo_id}", name="Retrieve Todo", description="An endpoint to retrieve a Todo", response_model=TodoOut)
-async def retrieve_one_todo_endpoint(_todo_id: int, _current_user: User = Depends(get_current_user)):
+async def retrieve_one_todo_endpoint(_todo_id: UUID, _current_user: User = Depends(get_current_user)):
     return await TodoService.retrieve_todo(_todo_id, _current_user)
