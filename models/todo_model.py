@@ -34,3 +34,9 @@ class Todo(Document):
         if not isinstance(other, Todo):
             return False
         return self.title == other.title
+    
+    @before_event([Replace, Insert])
+    def update_updated_at(self):
+        """Updated the event field when a todo item is updated
+        """
+        self.updated_at = datetime.utcnow()
