@@ -20,5 +20,6 @@ async def get_current_user(token: str = Depends(reusable_oauth)) -> User:
         if datetime.fromtimestamp(token_data.exp) < datetime.now():
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, 
-                detail='Token expired'
+                detail='Token expired',
+                headers={'WWW-Authenticate': 'Bearer'}
                 )
