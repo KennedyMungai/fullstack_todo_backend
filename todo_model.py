@@ -9,6 +9,11 @@ from models.user_model import User
 
 
 class Todo(Document):
+    """The model for the Todo data
+
+    Args:
+        Document (Beanie): The parent class for the Todo model
+    """
     todo_id: UUID = Field(default_factory=uuid4, unique=True)
     status: bool = False
     title: Indexed(str)
