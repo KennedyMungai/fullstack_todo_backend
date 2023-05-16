@@ -1,14 +1,14 @@
 """The file which holds the user dependencies"""
 from datetime import datetime
-from fastapi import Depends, status
-from fastapi.security import OAuth2PasswordBearer
-from pydantic import ValidationError
-from models.user_model import User
-from jose import jwt, JWTError
-from core.config import settings
-from schemas.auth_schema import TokenPayload
-from fastapi import HTTPException
 
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from pydantic import ValidationError
+
+from core.config import settings
+from models.user_model import User
+from schemas.auth_schema import TokenPayload
 
 reusable_oauth = OAuth2PasswordBearer(
     tokenUrl='/auth/login', scheme_name='JWT')
