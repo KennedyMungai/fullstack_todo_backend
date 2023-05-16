@@ -1,7 +1,7 @@
 """The file tha holds the Todo endpoints"""
 from typing import List
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 
 from dependencies.user_dependencies import get_current_user
 from models.todo_model import Todo
@@ -37,7 +37,8 @@ async def get_all_todos(_current_user: User = Depends(get_current_user)):
     "/create", 
     name="Create Todo", 
     description="An endpoint to create a Todo", 
-    response_model=Todo
+    response_model=Todo,
+    status_code=status.HTTP_201_CREATED
     )
 async def create_todo_endpoint(_todo: TodoCreate, _current_user: User = Depends(get_current_user)):
     return await TodoService.create_todo(_todo, _current_user)
