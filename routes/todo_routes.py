@@ -38,5 +38,5 @@ async def get_all_todos(_current_user: User = Depends(get_current_user)):
     description="An endpoint to create a Todo", 
     response_model=TodoOut
     )
-async def create_todo_endpoint(_todo: TodoCreate):
+async def create_todo_endpoint(_todo: TodoCreate, _current_user: User = Depends(get_current_user)):
     pass
