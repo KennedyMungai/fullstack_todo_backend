@@ -29,4 +29,4 @@ async def test_todo_router():
     response_model=List[TodoOut]
     )
 async def get_all_todos(_current_user: User = Depends(get_current_user)):
-    pass
+    return await TodoService.list_todos(_current_user)
