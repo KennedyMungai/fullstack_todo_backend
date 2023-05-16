@@ -4,7 +4,7 @@ from uuid import UUID
 
 from models.todo_model import Todo
 from models.user_model import User
-from schemas.todo_schema import TodoCreate
+from schemas.todo_schema import TodoCreate, TodoUpdate
 
 
 class TodoService:
@@ -22,4 +22,13 @@ class TodoService:
     async def retrieve_todo(_todo_id: UUID, _current_user: User) -> Todo:
         _todo = await Todo.find_one(Todo.owner.id == _current_user.user_id, Todo.id == _todo_id)
         return _todo
+    
+    @staticmethod
+    async def update_todo(_todo_id: UUID, _todo: TodoUpdate, _current_user: User) -> Todo:
+        _found_todo = await TodoService.retrieve_todo(_todo_id, _current_user)
+        await _found_todo.update({"$set": _todo.dict(exclude_unset=True)})
+        
+        await _found_todo.save()
+        return _found_todo
+        
         
