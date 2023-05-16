@@ -62,5 +62,13 @@ class UserService:
 
     @staticmethod
     async def get_user_by_id(_id: UUID) -> Optional[User]:
-       _user = await User.find_one(User.user_id == _id)
-       return _user
+        """A function to get a user using the user id
+
+        Args:
+            _id (UUID): The id of the user to be retrieved
+
+        Returns:
+            Optional[User]: The retrieved user
+        """
+        _user = await User.find_one(User.user_id == _id)
+        return _user
