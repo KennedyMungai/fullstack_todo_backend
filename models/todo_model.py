@@ -2,7 +2,7 @@
 from datetime import datetime
 from uuid import UUID, uuid4
 
-from beanie import Document, Indexed, Link
+from beanie import Document, Indexed, Link, before_event, Replace, Insert
 from pydantic import Field
 
 from models.user_model import User
