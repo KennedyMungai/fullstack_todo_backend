@@ -15,6 +15,18 @@ reusable_oauth = OAuth2PasswordBearer(
 
 
 async def get_current_user(token: str = Depends(reusable_oauth)) -> User:
+    """A  function to get details of the currently logged in user
+
+    Args:
+        token (str, optional): The token created by the login endpoint. Defaults to Depends(reusable_oauth).
+
+    Raises:
+        HTTPException: A 401 forbidden unauthorized is raised when the access token expired
+        HTTPException: A 403 unauthorized is raised when the access token is invalid
+
+    Returns:
+        User: The details of the currently logged in user
+    """
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY,
                              algorithms=[settings.ALGORITHM])
