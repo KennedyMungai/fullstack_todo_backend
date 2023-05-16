@@ -47,4 +47,12 @@ async def get_current_user(token: str = Depends(reusable_oauth)) -> User:
             headers={'WWW-Authenticate': 'Bearer'}
         )
 
-    user = await User()
+    _user = await UserService.get_user_by_id(token_data.sub)
+    
+    if not _user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Could not find user"
+        )
+        
+    return _user
