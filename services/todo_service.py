@@ -30,5 +30,14 @@ class TodoService:
         
         await _found_todo.save()
         return _found_todo
+    
+    @staticmethod
+    async def delete_todo(_todo_id: UUID, _current_user: User) -> None:
+        _found_todo = await TodoService.retrieve_todo(_todo_id, _current_user)
+        
+        if not _found_todo:
+            return None
+        
+        await _found_todo.delete()
         
         
