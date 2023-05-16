@@ -1,9 +1,10 @@
 """The service file for Todos"""
-from models.todo_model import Todo
-from models.user_model import User
 from typing import List
 
+from models.todo_model import Todo
+from models.user_model import User
 from schemas.todo_schema import TodoCreate
+
 
 class TodoService:
     @staticmethod
