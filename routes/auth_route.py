@@ -48,13 +48,12 @@ async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     }
 
 
-
 @auth_router.post(
-    "/test-token", 
-    name="Test Token", 
-    status_code=status.HTTP_200_OK, 
+    "/test-token",
+    name="Test Token",
+    status_code=status.HTTP_200_OK,
     description="An endpoint to test if the access token is valid", response_model=UserOut
-    )
+)
 async def test_token(_user: User = Depends(get_current_user)) -> Any:
     """The test token endpoint
 
