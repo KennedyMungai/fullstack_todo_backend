@@ -14,3 +14,9 @@ todo_router = APIRouter(prefix="/todo", tags=["Todo"])
 async def test_todo_router():
     """Test Todo router"""
     return {"Todo Router": "Works"}
+
+
+@todo_router.get("/", name="Retrieve all Todos", description="An endpoint to retrieve all Todos")
+async def get_all_todos():
+    """Retrieve all Todos"""
+    return {"Todos": "Works"}
