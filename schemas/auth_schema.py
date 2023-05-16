@@ -8,8 +8,8 @@ class TokenSchema(BaseModel):
     """The schema for the token"""
     access_token: str
     refresh_token: str
-    
-    
+
+
 class TokenPayload(BaseModel):
     """The Token payload schema"""
     sub: UUID = None
