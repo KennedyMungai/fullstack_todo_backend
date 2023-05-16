@@ -19,7 +19,12 @@ async def test_todo_router():
     return {"Todo Router": "Works"}
 
 
-@todo_router.get("/", name="Retrieve all Todos", description="An endpoint to retrieve all Todos", response_model=List[TodoOut])
+@todo_router.get(
+    "/", 
+    name="Retrieve all Todos", 
+    description="An endpoint to retrieve all Todos", 
+    response_model=List[TodoOut]
+    )
 async def get_all_todos():
     """Retrieve all Todos"""
     return {"Todos": "Works"}
