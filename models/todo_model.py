@@ -42,4 +42,5 @@ class Todo(Document):
         self.updated_at = datetime.utcnow()
         
     class Settings:
+        """The name of the collectipn"""
         name = "Todo"
