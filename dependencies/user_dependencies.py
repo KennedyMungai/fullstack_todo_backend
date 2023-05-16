@@ -9,6 +9,8 @@ from pydantic import ValidationError
 from core.config import settings
 from models.user_model import User
 from schemas.auth_schema import TokenPayload
+from services.user_services import UserService
+
 
 reusable_oauth = OAuth2PasswordBearer(
     tokenUrl='/auth/login', scheme_name='JWT')
@@ -44,3 +46,5 @@ async def get_current_user(token: str = Depends(reusable_oauth)) -> User:
             detail='Could not validate credentials',
             headers={'WWW-Authenticate': 'Bearer'}
         )
+
+    user = await User()
