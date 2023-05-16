@@ -6,7 +6,7 @@ todo_router = APIRouter(prefix="/todo", tags=["Todo"])
 
 
 @todo_router.get(
-    "/",
+    "/test-todo",
     name="Test Todo router",
     description="An endpoint to test the Todo router",
     response_model=dict
