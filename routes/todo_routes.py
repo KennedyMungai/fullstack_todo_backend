@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends
 
 from dependencies.user_dependencies import get_current_user
 from models.user_model import User
-from schemas.todo_schema import TodoOut
+from schemas.todo_schema import TodoCreate, TodoOut
 from services.todo_service import TodoService
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
@@ -30,3 +30,8 @@ async def test_todo_router():
     )
 async def get_all_todos(_current_user: User = Depends(get_current_user)):
     return await TodoService.list_todos(_current_user)
+
+
+@todo_router.post("/create", name="Create Todo", description="An endpoint to create a Todo", response_model=TodoOut)
+async def create_todo_endpoint(_todo: TodoCreate):
+    pass
