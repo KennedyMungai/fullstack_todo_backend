@@ -30,7 +30,9 @@ async def test_todo_router():
     description="An endpoint to retrieve all Todos", 
     response_model=List[TodoOut]
     )
-async def get_all_todos(_current_user: User = Depends(get_current_user)):
+async def get_all_todos(
+    _current_user: User = Depends(get_current_user)
+    ):
     return await TodoService.list_todos(_current_user)
 
 
@@ -41,10 +43,21 @@ async def get_all_todos(_current_user: User = Depends(get_current_user)):
     response_model=Todo,
     status_code=status.HTTP_201_CREATED
     )
-async def create_todo_endpoint(_todo: TodoCreate, _current_user: User = Depends(get_current_user)):
+async def create_todo_endpoint(
+    _todo: TodoCreate,
+    _current_user: User = Depends(get_current_user)
+    ):
     return await TodoService.create_todo(_todo, _current_user)
 
 
-@todo_router.get("/{_todo_id}", name="Retrieve Todo", description="An endpoint to retrieve a Todo", response_model=TodoOut)
-async def retrieve_one_todo_endpoint(_todo_id: UUID, _current_user: User = Depends(get_current_user)):
+@todo_router.get(
+    "/{_todo_id}", 
+    name="Retrieve Todo", 
+    description="An endpoint to retrieve a Todo", 
+    response_model=TodoOut
+    )
+async def retrieve_one_todo_endpoint(
+    _todo_id: UUID,
+    _current_user: User = Depends(get_current_user)
+    ):
     return await TodoService.retrieve_todo(_todo_id, _current_user)
