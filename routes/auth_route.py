@@ -72,6 +72,19 @@ async def test_token(_user: User = Depends(get_current_user)) -> Any:
 
 @auth_router.post("/refresh-token", name="Refresh Token", status_code=status.HTTP_200_OK, response_model=TokenSchema)
 async def refresh_access_token(_refresh_token: str= Body(...)) -> TokenSchema:
+    """Endpoint renews the access token for the application
+
+    Args:
+        _refresh_token (str, optional): The refresh access token. Defaults to Body(...).
+
+    Raises:
+        HTTPException: A 401 unauthorized is raised if the access token expires
+        HTTPException: A 403 forbidden is raised if the refresh token is invalid
+        HTTPException: A 404 not found is raised if the user is not found
+
+    Returns:
+        TokenSchema: The new access token
+    """
     try:
         payload = jwt.decode(_refresh_token, settings.JWT_SECRET_KEY,
                              algorithms=[settings.ALGORITHM])
