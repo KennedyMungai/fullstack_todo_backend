@@ -1,5 +1,8 @@
 """The file tha holds the Todo endpoints"""
+from typing import List
 from fastapi import APIRouter
+
+from schemas.todo_schema import TodoOut
 
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
@@ -16,7 +19,7 @@ async def test_todo_router():
     return {"Todo Router": "Works"}
 
 
-@todo_router.get("/", name="Retrieve all Todos", description="An endpoint to retrieve all Todos")
+@todo_router.get("/", name="Retrieve all Todos", description="An endpoint to retrieve all Todos", response_model=List[TodoOut])
 async def get_all_todos():
     """Retrieve all Todos"""
     return {"Todos": "Works"}
