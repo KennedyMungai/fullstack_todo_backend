@@ -11,11 +11,11 @@ auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 @auth_router.post(
-    "/login", 
-    name="Login", 
-    status_code=status.HTTP_200_OK, 
+    "/login",
+    name="Login",
+    status_code=status.HTTP_200_OK,
     description="Create Access and Refresh tokens"
-    )
+)
 async def login(_form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     """The login endpoint
 
