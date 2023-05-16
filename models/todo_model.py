@@ -40,3 +40,6 @@ class Todo(Document):
         """Updated the event field when a todo item is updated
         """
         self.updated_at = datetime.utcnow()
+        
+    class Settings:
+        name = "Todo"
