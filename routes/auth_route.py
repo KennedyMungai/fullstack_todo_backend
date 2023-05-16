@@ -91,7 +91,7 @@ async def refresh_access_token(_refresh_token: str = Body(...)) -> TokenSchema:
         TokenSchema: The new access token
     """
     try:
-        payload = jwt.decode(_refresh_token, settings.JWT_SECRET_KEY,
+        payload = jwt.decode(_refresh_token, settings.JWT_REFRESH_SECRET_KEY,
                              algorithms=[settings.ALGORITHM])
         token_data = TokenPayload(**payload)
 
