@@ -1,9 +1,9 @@
 """The file tha holds the Todo endpoints"""
 from typing import List
+
 from fastapi import APIRouter
 
 from schemas.todo_schema import TodoOut
-
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
 
