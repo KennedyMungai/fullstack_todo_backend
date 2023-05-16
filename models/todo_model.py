@@ -20,16 +20,16 @@ class Todo(Document):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     owner: Link[User]
-    
+
     def __repr__(self) -> str:
         return f"Todo: {self.title}"
-    
+
     def __str__(self) -> str:
         return self.title
-    
+
     def __hash__(self) -> int:
         return hash(self.title)
-    
+
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Todo):
             return False
