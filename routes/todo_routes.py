@@ -1,7 +1,9 @@
 """The file tha holds the Todo endpoints"""
 from typing import List
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from dependencies.user_dependencies import get_current_user
+from models.user_model import User
 
 from schemas.todo_schema import TodoOut
 
@@ -25,6 +27,5 @@ async def test_todo_router():
     description="An endpoint to retrieve all Todos", 
     response_model=List[TodoOut]
     )
-async def get_all_todos():
-    """Retrieve all Todos"""
-    return {"Todos": "Works"}
+async def get_all_todos(_current_user: User = Depends(get_current_user)):
+    pass
