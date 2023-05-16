@@ -34,10 +34,23 @@ class User(Document):
 
     @property
     def create(self) -> datetime:
+        """Returns the user creation time
+
+        Returns:
+            datetime: The user creation time
+        """
         return self.id.generation_time
 
     @classmethod
     async def by_email(self, email: str) -> "User":
+        """A method of finding users by email
+
+        Args:
+            email (str): The user email
+
+        Returns:
+            User: The user
+        """
         return await self.find_one(self.email == email)
 
     class Settings:
