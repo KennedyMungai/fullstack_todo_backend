@@ -13,5 +13,6 @@ class TodoService:
     
     @staticmethod
     async def create_todo(_todo: TodoCreate, _current_user: User) -> Todo:
-        pass
+        _new_todo = Todo(**_todo.dict(), owner=_current_user)
+        return await _new_todo.insert()
         
