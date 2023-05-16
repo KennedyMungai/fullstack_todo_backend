@@ -5,5 +5,5 @@ from typing import List
 
 class TodoService:
     @staticmethod
-    async def list_todos(_user: User):
+    async def list_todos(_user: User) -> List[Todo]:
         pass
