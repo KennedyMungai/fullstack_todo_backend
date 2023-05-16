@@ -7,6 +7,8 @@ from core.config import settings
 from models.user_model import User
 from routes.auth_route import auth_router
 from routes.user_router import user_router
+from routes.todo_routes import todo_router
+
 
 app = FastAPI(
     title="Todo Backend",
@@ -30,3 +32,4 @@ async def root() -> dict[str, str]:
 
 app.include_router(user_router)
 app.include_router(auth_router)
+app.include_router(todo_router)
