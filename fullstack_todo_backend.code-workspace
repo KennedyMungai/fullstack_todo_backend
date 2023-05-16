@@ -13,7 +13,8 @@
 			"dotenv",
 			"passlib",
 			"pymongo",
-			"todolist"
+			"todolist",
+			"Todos"
 		]
 	}
 }
