@@ -2,18 +2,18 @@
 from datetime import datetime
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, status, Body
+from fastapi import APIRouter, Body, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
+from jose import JWTError, jwt
 from pydantic import ValidationError
-from core.config import settings
 
+from core.config import settings
 from core.security import create_access_token, create_refresh_token
 from dependencies.user_dependencies import get_current_user
 from models.user_model import User
 from schemas.auth_schema import TokenPayload, TokenSchema
 from schemas.user_schema import UserOut
 from services.user_services import UserService
-from jose import JWTError, jwt
 
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
