@@ -6,4 +6,6 @@ from typing import List
 class TodoService:
     @staticmethod
     async def list_todos(_user: User) -> List[Todo]:
-        pass
+        _todos = await Todo.find(Todo.owner.id == _user.user_id).to_list()
+        return _todos
+        
