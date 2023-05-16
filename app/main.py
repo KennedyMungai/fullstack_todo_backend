@@ -6,9 +6,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from core.config import settings
 from models.user_model import User
 from routes.auth_route import auth_router
-from routes.user_router import user_router
 from routes.todo_routes import todo_router
-
+from routes.user_router import user_router
 
 app = FastAPI(
     title="Todo Backend",
