@@ -11,7 +11,6 @@ from models.user_model import User
 from schemas.auth_schema import TokenPayload
 from services.user_services import UserService
 
-
 reusable_oauth = OAuth2PasswordBearer(
     tokenUrl='/auth/login', scheme_name='JWT')
 
