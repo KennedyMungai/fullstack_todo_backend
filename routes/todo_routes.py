@@ -32,6 +32,11 @@ async def get_all_todos(_current_user: User = Depends(get_current_user)):
     return await TodoService.list_todos(_current_user)
 
 
-@todo_router.post("/create", name="Create Todo", description="An endpoint to create a Todo", response_model=TodoOut)
+@todo_router.post(
+    "/create", 
+    name="Create Todo", 
+    description="An endpoint to create a Todo", 
+    response_model=TodoOut
+    )
 async def create_todo_endpoint(_todo: TodoCreate):
     pass
