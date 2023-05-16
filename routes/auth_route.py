@@ -1,15 +1,19 @@
 """The file that holds the auth endpoints for the users"""
+from datetime import datetime
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Body
 from fastapi.security import OAuth2PasswordRequestForm
+from pydantic import ValidationError
+from core.config import settings
 
 from core.security import create_access_token, create_refresh_token
 from dependencies.user_dependencies import get_current_user
 from models.user_model import User
-from schemas.auth_schema import TokenSchema
+from schemas.auth_schema import TokenPayload, TokenSchema
 from schemas.user_schema import UserOut
 from services.user_services import UserService
+from jose import JWTError, jwt
 
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
@@ -63,4 +67,35 @@ async def test_token(_user: User = Depends(get_current_user)) -> Any:
     Returns:
         Any: Any data type can be returned
     """
+    return _user
+
+
+@auth_router.post("/refresh-token", name="Refresh Token", status_code=status.HTTP_200_OK, response_model=TokenSchema)
+async def refresh_access_token(_refresh_token: str= Body(...)) -> TokenSchema:
+    try:
+        payload = jwt.decode(_refresh_token, settings.JWT_SECRET_KEY,
+                             algorithms=[settings.ALGORITHM])
+        token_data = TokenPayload(**payload)
+
+        if datetime.fromtimestamp(token_data.exp) < datetime.now():
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail='Token expired',
+                headers={'WWW-Authenticate': 'Bearer'}
+            )
+    except (JWTError, ValidationError):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Could not validate credentials',
+            headers={'WWW-Authenticate': 'Bearer'}
+        )
+
+    _user = await UserService.get_user_by_id(token_data.sub)
+
+    if not _user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Could not find user"
+        )
+
     return _user
