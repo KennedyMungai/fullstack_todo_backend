@@ -2,9 +2,9 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
+
 from dependencies.user_dependencies import get_current_user
 from models.user_model import User
-
 from schemas.todo_schema import TodoOut
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
