@@ -9,6 +9,7 @@ class TokenSchema(BaseModel):
     refresh_token: str
     
     
-class TokenPayload(BaseModel): 
+class TokenPayload(BaseModel):
+    """The Token payload schema"""
     sub: UUID = None
     exp: int = None
