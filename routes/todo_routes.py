@@ -33,6 +33,14 @@ async def test_todo_router():
 async def get_all_todos(
     _current_user: User = Depends(get_current_user)
     ):
+    """An endpoint to return all the todos by a specific user
+
+    Args:
+        _current_user (User, optional): The user who is logged in. Defaults to Depends(get_current_user).
+
+    Returns:
+        List[TodoOut]: Returns a list of TodoOut objects
+    """
     return await TodoService.list_todos(_current_user)
 
 
@@ -47,6 +55,15 @@ async def create_todo_endpoint(
     _todo: TodoCreate,
     _current_user: User = Depends(get_current_user)
     ):
+    """The endpoint to create Todos
+
+    Args:
+        _todo (TodoCreate): The template for the data used to create Todos
+        _current_user (User, optional): The user who is logged in. Defaults to Depends(get_current_user).
+
+    Returns:
+        _type_: _description_
+    """
     return await TodoService.create_todo(_todo, _current_user)
 
 
@@ -60,6 +77,15 @@ async def retrieve_one_todo_endpoint(
     _todo_id: UUID,
     _current_user: User = Depends(get_current_user)
     ):
+    """An endpoint to retrieve a single todo
+
+    Args:
+        _todo_id (UUID): The id of the user
+        _current_user (User, optional): The currently logged in user. Defaults to Depends(get_current_user).
+
+    Returns:
+        _type_: _description_
+    """
     return await TodoService.retrieve_todo(_todo_id, _current_user)
 
 
