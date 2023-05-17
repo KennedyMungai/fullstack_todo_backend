@@ -25,14 +25,14 @@ async def test_todo_router():
 
 
 @todo_router.get(
-    "/", 
-    name="Retrieve all Todos", 
-    description="An endpoint to retrieve all Todos", 
+    "/",
+    name="Retrieve all Todos",
+    description="An endpoint to retrieve all Todos",
     response_model=List[TodoOut]
-    )
+)
 async def get_all_todos(
     _current_user: User = Depends(get_current_user)
-    ):
+):
     """An endpoint to return all the todos by a specific user
 
     Args:
@@ -45,16 +45,16 @@ async def get_all_todos(
 
 
 @todo_router.post(
-    "/create", 
-    name="Create Todo", 
-    description="An endpoint to create a Todo", 
+    "/create",
+    name="Create Todo",
+    description="An endpoint to create a Todo",
     response_model=Todo,
     status_code=status.HTTP_201_CREATED
-    )
+)
 async def create_todo_endpoint(
     _todo: TodoCreate,
     _current_user: User = Depends(get_current_user)
-    ):
+):
     """The endpoint to create Todos
 
     Args:
@@ -68,15 +68,15 @@ async def create_todo_endpoint(
 
 
 @todo_router.get(
-    "/{_todo_id}", 
-    name="Retrieve Todo", 
+    "/{_todo_id}",
+    name="Retrieve Todo",
     description="An endpoint to retrieve a Todo",
     response_model=TodoOut
-    )
+)
 async def retrieve_one_todo_endpoint(
     _todo_id: UUID,
     _current_user: User = Depends(get_current_user)
-    ):
+):
     """An endpoint to retrieve a single todo
 
     Args:
