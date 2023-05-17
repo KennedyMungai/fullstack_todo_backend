@@ -36,7 +36,8 @@ async def get_all_todos(
     """An endpoint to return all the todos by a specific user
 
     Args:
-        _current_user (User, optional): The user who is logged in. Defaults to Depends(get_current_user).
+        _current_user (User, optional): 
+                The user who is logged in. Defaults to Depends(get_current_user).
 
     Returns:
         List[TodoOut]: Returns a list of TodoOut objects
@@ -59,7 +60,8 @@ async def create_todo_endpoint(
 
     Args:
         _todo (TodoCreate): The template for the data used to create Todos
-        _current_user (User, optional): The user who is logged in. Defaults to Depends(get_current_user).
+        _current_user (User, optional): 
+                The user who is logged in. Defaults to Depends(get_current_user).
 
     Returns:
         _type_: _description_
@@ -81,7 +83,8 @@ async def retrieve_one_todo_endpoint(
 
     Args:
         _todo_id (UUID): The id of the user
-        _current_user (User, optional): The currently logged in user. Defaults to Depends(get_current_user).
+        _current_user (User, optional): 
+                The currently logged in user. Defaults to Depends(get_current_user).
 
     Returns:
         _type_: _description_
