@@ -38,6 +38,15 @@ class TodoService:
 
     @staticmethod
     async def retrieve_todo(_todo_id: UUID, _current_user: User) -> Todo:
+        """The service function to retrieve a todo by id
+
+        Args:
+            _todo_id (UUID): The id of the todo
+            _current_user (User): The currently logged in user
+
+        Returns:
+            Todo: The todo by id
+        """
         _todo = await Todo.find_one(Todo.owner.id == _current_user.id, Todo.id == _todo_id)
         return _todo
 
