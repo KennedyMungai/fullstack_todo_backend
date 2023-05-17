@@ -21,7 +21,7 @@ class TodoService:
         """
         _todos = await Todo.find(Todo.owner.id == _user.user_id).to_list()
         return _todos
-    
+
     @staticmethod
     async def create_todo(_todo: TodoCreate, _current_user: User) -> Todo:
         """The service function to create todos for a specific user
@@ -35,12 +35,12 @@ class TodoService:
         """
         _new_todo = Todo(**_todo.dict(), owner=_current_user)
         return await _new_todo.insert()
-    
+
     @staticmethod
     async def retrieve_todo(_todo_id: UUID, _current_user: User) -> Todo:
         _todo = await Todo.find_one(Todo.owner.id == _current_user.id, Todo.id == _todo_id)
         return _todo
-    
+
     @staticmethod
     async def update_todo(_todo_id: UUID, _todo: TodoUpdate, _current_user: User) -> Todo:
         """The service function to update a todo
@@ -55,10 +55,10 @@ class TodoService:
         """
         _found_todo = await TodoService.retrieve_todo(_todo_id, _current_user)
         await _found_todo.update({"$set": _todo.dict(exclude_unset=True)})
-        
+
         await _found_todo.save()
         return _found_todo
-    
+
     @staticmethod
     async def delete_todo(_todo_id: UUID, _current_user: User) -> None:
         """The service function to delete Todos
@@ -68,10 +68,8 @@ class TodoService:
             _current_user (User): The logged in user
         """
         _found_todo = await TodoService.retrieve_todo(_todo_id, _current_user)
-        
+
         if not _found_todo:
             return None
-        
+
         await _found_todo.delete()
-        
-        
