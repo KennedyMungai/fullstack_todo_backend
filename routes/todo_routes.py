@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, status
 from dependencies.user_dependencies import get_current_user
 from models.todo_model import Todo
 from models.user_model import User
-from schemas.todo_schema import TodoCreate, TodoOut
+from schemas.todo_schema import TodoCreate, TodoOut, TodoUpdate
 from services.todo_service import TodoService
 
 todo_router = APIRouter(prefix="/todo", tags=["Todo"])
@@ -70,13 +70,13 @@ async def create_todo_endpoint(
 
 
 @todo_router.get(
-    "/{_todo_id}",
+    "/{todo_id}",
     name="Retrieve Todo",
     description="An endpoint to retrieve a Todo",
     response_model=TodoOut
 )
 async def retrieve_one_todo_endpoint(
-    _todo_id: UUID,
+    todo_id: UUID,
     _current_user: User = Depends(get_current_user)
 ):
     """An endpoint to retrieve a single todo
@@ -89,7 +89,29 @@ async def retrieve_one_todo_endpoint(
     Returns:
         _type_: _description_
     """
-    return await TodoService.retrieve_todo(_todo_id, _current_user)
+    return await TodoService.retrieve_todo(todo_id, _current_user)
 
 
-# @todo_router.put()
+@todo_router.put(
+    "/edit/{todo_id}", 
+    name="The endpoint to edit  a Todo", 
+    description="An endpoint to edit a Todo", 
+    response_model=TodoOut
+    )
+async def edit_todo_endpoint(
+    todo_id: UUID,
+    _todo: TodoUpdate,
+    _current_user: User = Depends(get_current_user)
+    ) -> TodoOut:
+    """An endpoint to edit a Todo
+
+    Args:
+        todo_id (UUID): The id of the Todo
+        _todo (TodoUpdate): The data to update the Todo with
+        _current_user (User, optional): 
+                The currently logged in user. Defaults to Depends(get_current_user).
+
+    Returns:
+        TodoOut: The updated Todo
+    """
+    return await TodoService.update_todo(todo_id, _todo, _current_user)
