@@ -19,7 +19,7 @@ class TodoService:
         Returns:
             List[Todo]: The list of todos by the user
         """
-        _todos = await Todo.find(Todo.owner.id == _user.user_id).to_list()
+        _todos = await Todo.find(Todo.owner.id == _user.id).to_list()
         return _todos
 
     @staticmethod
